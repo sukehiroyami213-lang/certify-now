@@ -14,8 +14,8 @@ export const Certificate = forwardRef<HTMLDivElement, Props>(
     return (
       <div
         ref={ref}
-        className="bg-white w-full aspect-[4/3] md:aspect-[1.4/1] rounded-lg shadow-xl border border-border flex flex-col p-10 md:p-14"
-        style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}
+        className="bg-white w-full aspect-[4/3] md:aspect-[1.4/1] rounded-lg shadow-xl flex flex-col p-10 md:p-14"
+        style={{ fontFamily: "system-ui, -apple-system, sans-serif", border: "1px solid #e5e7eb" }}
       >
         {/* Top section */}
         <div className="flex justify-between items-start">
