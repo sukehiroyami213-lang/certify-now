@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import html2canvas from "html2canvas";
+import { toPng } from "html-to-image";
 import jsPDF from "jspdf";
+import { toast } from "sonner";
 import { CertificateForm, type CertificateData } from "@/components/CertificateForm";
 import { Certificate } from "@/components/Certificate";
 
@@ -39,18 +40,32 @@ function Index() {
 
   const handleDownload = async () => {
     if (!certRef.current) return;
-    const canvas = await html2canvas(certRef.current, {
-      scale: 2,
-      backgroundColor: "#ffffff",
-    });
-    const imgData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF({
-      orientation: "landscape",
-      unit: "px",
-      format: [canvas.width, canvas.height],
-    });
-    pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
-    pdf.save(`${data.studentName.replace(/\s+/g, "_")}_certificate.pdf`);
+    try {
+      const node = certRef.current;
+      const width = node.offsetWidth;
+      const height = node.offsetHeight;
+
+      const dataUrl = await toPng(node, {
+        pixelRatio: 2,
+        backgroundColor: "#ffffff",
+        width,
+        height,
+        cacheBust: true,
+      });
+
+      const pdf = new jsPDF({
+        orientation: width >= height ? "landscape" : "portrait",
+        unit: "px",
+        format: [width, height],
+        hotfixes: ["px_scaling"],
+      });
+      pdf.addImage(dataUrl, "PNG", 0, 0, width, height);
+      pdf.save(`${data.studentName.replace(/\s+/g, "_") || "certificate"}_certificate.pdf`);
+      toast.success("Certificate downloaded");
+    } catch (err) {
+      console.error("Failed to generate PDF:", err);
+      toast.error("Failed to generate PDF. Please try again.");
+    }
   };
 
   return (
