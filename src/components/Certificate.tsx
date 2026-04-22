@@ -23,18 +23,43 @@ export const Certificate = forwardRef<HTMLDivElement, Props>(
       >
         {/* Top section */}
         <div className="flex justify-between items-start gap-6">
-          <div className="flex items-center">
+          {/* Udemy logo with purple accent */}
+          <div className="relative inline-block">
+            <svg
+              viewBox="0 0 24 24"
+              className="absolute"
+              style={{
+                width: "0.45em",
+                height: "0.45em",
+                top: "-0.18em",
+                left: "0.12em",
+                fontSize: "3.5rem",
+              }}
+              aria-hidden="true"
+            >
+              <path d="M2 18 L12 4 L22 18 Z" fill="#a435f0" />
+            </svg>
             <span
-              className="text-5xl md:text-6xl font-extrabold tracking-tight text-black leading-none"
+              className="block text-5xl md:text-6xl font-extrabold tracking-tight text-black leading-none"
               style={{ letterSpacing: "-0.04em" }}
             >
               udemy
             </span>
           </div>
-          <div className="text-[10px] md:text-[11px] text-gray-500 text-right space-y-1.5 leading-relaxed font-medium">
-            <div>Certificate no:&nbsp;{certificateId}</div>
-            <div>Certificate url:&nbsp;{url}</div>
-            <div>Reference Number:&nbsp;{referenceNumber}</div>
+
+          <div className="text-[10px] md:text-[11px] text-gray-500 text-right leading-relaxed font-medium">
+            <div>
+              Certificete no:{" "}
+              <span className="text-gray-700">{certificateId}</span>
+            </div>
+            <div>
+              Certificate url:{" "}
+              <span className="text-gray-700">{url}</span>
+            </div>
+            <div>
+              Reference Number:{" "}
+              <span className="text-gray-700">{referenceNumber}</span>
+            </div>
           </div>
         </div>
 
