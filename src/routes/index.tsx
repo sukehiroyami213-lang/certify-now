@@ -10,9 +10,11 @@ export const Route = createFileRoute("/")({
 });
 
 function generateCertificateId() {
-  const seg = () =>
-    Math.random().toString(36).substring(2, 6).toUpperCase();
-  return `UC-${seg()}-${seg()}-${seg()}`;
+  const hex = (n: number) =>
+    Array.from({ length: n }, () =>
+      Math.floor(Math.random() * 16).toString(16)
+    ).join("");
+  return `UC-${hex(8)}-${hex(4)}-${hex(4)}-${hex(4)}-${hex(12)}`;
 }
 
 function generateReferenceNumber() {
