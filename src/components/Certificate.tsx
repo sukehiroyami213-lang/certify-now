@@ -23,25 +23,31 @@ export const Certificate = forwardRef<HTMLDivElement, Props>(
       >
         {/* Top section */}
         <div className="flex justify-between items-start gap-6">
-          {/* Udemy logo with purple accent */}
-          <div className="relative inline-block">
+          {/* Udemy logo: small purple chevron above the "u" */}
+          <div className="relative inline-block leading-none">
             <svg
-              viewBox="0 0 24 24"
+              viewBox="0 0 32 18"
               className="absolute"
               style={{
-                width: "0.45em",
-                height: "0.45em",
-                top: "-0.18em",
-                left: "0.12em",
-                fontSize: "3.5rem",
+                width: "20px",
+                height: "11px",
+                top: "-8px",
+                left: "9px",
               }}
               aria-hidden="true"
             >
-              <path d="M2 18 L12 4 L22 18 Z" fill="#a435f0" />
+              <path
+                d="M2 16 L16 4 L30 16"
+                fill="none"
+                stroke="#a435f0"
+                strokeWidth="5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
             <span
               className="block text-5xl md:text-6xl font-extrabold tracking-tight text-black leading-none"
-              style={{ letterSpacing: "-0.04em" }}
+              style={{ letterSpacing: "-0.05em" }}
             >
               udemy
             </span>
